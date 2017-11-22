@@ -8,6 +8,10 @@ pageWithSidebar(
         p("Click the button to update the value displayed in the main panel.")
     ),
     mainPanel(
-        verbatimTextOutput("nText")
+        splitLayout(
+            verbatimTextOutput("nText"),
+            tableOutput("predTable")
+            
+        )
     )
 )
