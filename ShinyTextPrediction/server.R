@@ -5,7 +5,7 @@ library(data.table)
 
 function(input, output) {
     # load the phrase and prediction data
-    load(file = "../../../Data/babyDT.RData")
+    load(file = "babyDT.RData")
     
     # builds a reactive expression that only invalidates 
     # when the value of input$goButton becomes out of date 
