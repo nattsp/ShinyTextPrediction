@@ -20,6 +20,7 @@ tokensFun <- function(xt){
                         , remove_twitter = TRUE
                         , remove_url = TRUE
                         , verbose = TRUE)
+    txtTok <- tokens_tolower(txtTok)
     txtTok <- tokens_select(txtTok
                                , profanity
                                , selection = "remove"
@@ -95,6 +96,8 @@ txt = "Well I'm pretty sure my granny has some old bagpipes in her garage I'll d
 txt = "Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some"
 txt = "After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little"
 txt = "Be grateful for the good times and keep the faith during the"
+txt = "If this isn't the cutest thing you've ever seen, then you must be"
+txt = "When you breathe, I want to be the air for you. I'll be there for you, I'd live and I'd"
 
 ## Convert to ngrams using the last words in the sentence
 txtCorpus <- corpus(txt)
