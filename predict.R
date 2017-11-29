@@ -34,6 +34,19 @@ preceedingWords <- function(xt, num){
     return(txtWords)
 }
 
+ngramPredict <- function(xt, ngramDT){
+    ngramPredict <- ngramDT[phrase == xt][order(-prob)]
+    ngramPredict[, c("ngram", "phrase", "docfreq") := NULL]
+    return(ngramPredict)
+}
+
+predictWordFromNgrams <- function(quin, quad, tri, bi){
+    l = list(quin, quad, tri, bi)
+    wordsTemp = as.data.table(rbindlist(l))
+    words = wordsTemp[, .(score = max(prob)), by = .(predict)][1:5]
+    words
+}
+
 
 # Test input text
 txt = "The guy in front of me just bought a pound of bacon, a bouquet, and a case of"
@@ -42,6 +55,7 @@ txt = "You're the reason why I smile everyday. Can you follow me please? It woul
 txt = "Hey sunshine, can you follow me and make me the"
 txt = "Very early observations on the Bills game: Offense still struggling but the"
 txt = "Go on a romantic date at the"
+txt = "Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my"
 
 ## Convert to ngrams using the last words in the sentence
 txtCorpus <- corpus(txt)
@@ -130,3 +144,15 @@ if (wordCount >2){
 }
 txtBi <- preceedingWords(txtCorpus, 2)
 txtUni <- preceedingWords(txtCorpus, 1)
+
+if (wordCount > 3){
+    quinPredict <- ngramPredict(txtQuad, quingramDT)
+}
+if (wordCount > 2){
+    quadPredict <- ngramPredict(txtTri, quadgramDT)
+}
+triPredict <- ngramPredict(txtBi, trigramDT)
+biPredict <- ngramPredict(txtUni, bigramDT)
+
+predictWord <- predictWordFromNgrams(quinPredict, quadPredict, triPredict, biPredict)
+predictWord
