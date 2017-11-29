@@ -1,0 +1,12 @@
+name: ShinyTextPrediction
+title: ShinyTextPrediction
+username:
+account: nattsapps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 238803
+bundleId: 1089839
+url: https://nattsapps.shinyapps.io/ShinyTextPrediction/
+when: 1511338670.11755
+asMultiple: FALSE
+asStatic: FALSE
