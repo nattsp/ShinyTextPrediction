@@ -69,16 +69,23 @@ ngramsPredict <- function(ngrams, quingramDT, quadgramDT, trigramDT, bigramDT){
     triPredict <- ngramPredict(ngrams$txtBi, trigramDT)
     biPredict <- ngramPredict(ngrams$txtUni, bigramDT)
     
-    print(quinPredict)
-    print(quadPredict)
-    print(triPredict)
-    print(biPredict)
+    #print(quinPredict)
+    #print(quadPredict)
+    #print(triPredict)
+    #print(biPredict)
     
     quadPredict[, prob := 0.4 * prob]
     triPredict[, prob := 0.4 * 0.4 * prob]
     biPredict[, prob := 0.4 * 0.4 * 0.4 * prob]
     
     predictWord <- predictWordFromNgrams(quinPredict, quadPredict, triPredict, biPredict)
+    return(predictWord)
+}
+
+mainPrediction <- function(txt, quingramDT, quadgramDT, trigramDT, bigramDT){
+    l <- ngramGenerator(txt)
+    
+    predictWord <- ngramsPredict(l, quingramDT, quadgramDT, trigramDT, bigramDT)
     return(predictWord)
 }
 
@@ -198,10 +205,18 @@ biPredict <- ngramPredict(txtUni, bigramDT)
 
 predictWord <- predictWordFromNgrams(quinPredict, quadPredict, triPredict, biPredict)
 
-### Even more steps in functions
-
 l <- ngramGenerator(txt)
 
 predictWord <- ngramsPredict(l, quingramDT, quadgramDT, trigramDT, bigramDT)
 
+### Even more steps in functions
+
+predictWord <- mainPrediction(txt, quingramDT, quadgramDT, trigramDT, bigramDT)
+
 predictWord
+predictWord[,predict]
+
+
+##as it will appear in the shiny app
+class(mainPrediction(txt, quingramDT, quadgramDT, trigramDT, bigramDT)[, .(predict)])
+

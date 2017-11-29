@@ -28,3 +28,7 @@ txtTokens <- tokens(txtCorpus
                     , remove_separators = TRUE
                     , remove_twitter = TRUE)
 head(txtTokens)
+
+
+load(file = "ShinyTextPrediction/babyDT.RData")
+babyDT
