@@ -39,3 +39,5 @@ quingramDT
 quadgramDT[phrase == "is the time"]
 dim(quingramDT)
 dim(quadgramDT)
+
+#check git problems
