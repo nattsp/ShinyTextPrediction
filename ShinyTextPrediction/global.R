@@ -20,7 +20,7 @@ textPhraseInput <- function(id) {
         textInput(ns("text"), "Input text here", "input text"),
         br(),
         actionButton(ns("goButton"), "Go!"),
-        p("Click here to predict the next word in the sentence.")
+        p("Click here to predict the next word in your sentence.")
     )
 }
 
@@ -61,7 +61,7 @@ ngramPredict <- function(input, output, id, xt, ngramDT){
 
 predictWordFromNgrams <- function(input, output, id, quin, quad, tri, bi){
     l = list(quin, quad, tri, bi)
-    noGuess <- 10
+    noGuess <- 6
     wordsTemp <- as.data.table(rbindlist(l))
     words <- wordsTemp[, .(score = max(prob)), by = .(predict)][1:noGuess]
     words
