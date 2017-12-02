@@ -5,7 +5,7 @@ library(data.table)
 
 
 # load the phrase and prediction data
-load(file = "./Data/babyDT.RData")
+#load(file = "./Data/babyDT.RData")
 load(file = "./Data/quingramDT.RData")
 load(file = "./Data/quadgramDT.RData")
 load(file = "./Data/trigramDT.RData")
@@ -71,7 +71,7 @@ predictWordFromNgrams <- function(input, output, id, quin, quad, tri, bi){
 
 ngramGenerator <- function(input, output, id, xt){
     txtCorpus <- callModule(tokensFun, "inner8", xt)
-    nWords <- ntoken(txtTokens)[[1]]
+    nWords <- ntoken(txtCorpus)[[1]]
     # if (nWords > 3){
     #     txtQuad <- preceedingWords(txtCorpus, 4)
     # } else { txtQuad <- "a a a a"}
